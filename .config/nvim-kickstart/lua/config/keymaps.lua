@@ -17,6 +17,14 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+vim.keymap.set('i', '<M-j>', '<Esc><Cmd>m .+1<CR>==gi')
+vim.keymap.set('n', '<M-j>', '<Cmd>execute "move .+" . v:count1<CR>==')
+vim.keymap.set('v', '<M-j>', [[:<C-U>execute "'<lt>,'>move '>+" . v:count1<CR>gv=gv]])
+
+vim.keymap.set('i', '<M-k>', '<Esc><Cmd>m .-2<CR>==gi')
+vim.keymap.set('n', '<M-k>', [[<Cmd>execute "move .-" . (v:count1 + 1)<CR>==]])
+vim.keymap.set('v', '<M-k>', [[:<C-U>execute "'<lt>,'>move '<lt>-" . (v:count1 + 1)<CR>gv=gv]])
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --

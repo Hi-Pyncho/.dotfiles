@@ -71,7 +71,7 @@ ZSH_THEME="fletcherm"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-plugins+=(zsh-vi-mode)
+# plugins+=(zsh-vi-mode)
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
@@ -96,6 +96,10 @@ alias open-git-lk='cd /mnt/d/git/LkApp/'
 alias open-config-nvim='cd ~/.config/nvim && nvim'
 alias open-obsidian-notes='cd /mnt/d/notes/ && nvim'
 alias open-game-phaser='cd /mnt/d/game-dev/phaser/'
+
+# windows nvim config
+alias open-config-nvim-windows='cd /mnt/c/Users/pyncho/AppData/Local/nvim'
+alias copy-config-nvim-windows='yes | cp -rf ~/.dotfiles/.config/nvim-kickstart/* /mnt/c/Users/pyncho/AppData/Local/nvim'
 
 alias v='NVIM_APPNAME=nvim-lazyvim nvim' # default Neovim config
 alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart

@@ -2,18 +2,19 @@ return {
 
   -- tokyonight
   {
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     lazy = true,
-    opts = { style = "moon" },
+    opts = { style = 'moon' },
   },
 
   -- catppuccin
   {
-    "catppuccin/nvim",
+    'catppuccin/nvim',
     lazy = true,
-    name = "catppuccin",
+    name = 'catppuccin',
     opts = {
       integrations = {
+        blink_cmp = true,
         aerial = true,
         alpha = true,
         cmp = true,
@@ -33,13 +34,13 @@ return {
         native_lsp = {
           enabled = true,
           underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
+            errors = { 'undercurl' },
+            hints = { 'undercurl' },
+            warnings = { 'undercurl' },
+            information = { 'undercurl' },
           },
         },
-        navic = { enabled = true, custom_bg = "lualine" },
+        navic = { enabled = true, custom_bg = 'lualine' },
         neotest = true,
         neotree = true,
         noice = true,
@@ -54,11 +55,11 @@ return {
     },
     specs = {
       {
-        "akinsho/bufferline.nvim",
+        'akinsho/bufferline.nvim',
         optional = true,
         opts = function(_, opts)
-          if (vim.g.colors_name or ""):find("catppuccin") then
-            opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
+          if (vim.g.colors_name or ''):find 'catppuccin' then
+            opts.highlights = require('catppuccin.groups.integrations.bufferline').get()
           end
         end,
       },

@@ -1,18 +1,19 @@
-local ls = require("luasnip")
-local snip = ls.snippet
-local node = ls.snippet_node
-local text = ls.text_node
-local insert = ls.insert_node
-local func = ls.function_node
-local choice = ls.choice_node
-local dynamicn = ls.dynamic_node
+local ls = require 'luasnip'
+local s = ls.snippet
+local n = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
 
-ls.add_snippets("javascript", {
-  snip({
-    trig = "test",
-    namr = "TEST",
-    dscr = "sdfsdfsdf",
-  }, {
-    text("ssssssssssssssssssss"),
-  }),
-})
+-- ls.add_snippets('javascript', {
+--   s({
+--     trig = 'test-js',
+--     dscr = 'import from vue',
+--   }, {
+--     t 'import { ',
+--     i '',
+--     t " } from 'vue'",
+--   }),
+-- })

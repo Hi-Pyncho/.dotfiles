@@ -1,0 +1,54 @@
+{
+  "v-base-setup": {
+    "prefix": "v-base-setup",
+    "body": [
+      "<template>",
+      "$1",
+      "</template>",
+      "",
+      "<script setup>",
+      "$2",
+      "</script>"
+    ]
+  },
+  "v-define-props": {
+    "prefix": "v-define-props",
+    "body": ["defineProps({", "  $1", "});"],
+    "description": "v-define-props"
+  },
+  "v-define-props-var": {
+    "prefix": "v-define-props-var",
+    "body": ["const props = defineProps({", "  $1", "});"],
+    "description": "v-define-props-var"
+  },
+  "v-import": {
+    "prefix": "v-import",
+    "body": ["import { $1 } from 'vue';"],
+    "description": "v-import"
+  },
+  "v-import-router": {
+    "prefix": "v-import-router",
+    "body": ["import { $1 } from 'vue-router';"],
+    "description": "v-import"
+  },
+  "log": {
+    "scope": "javascript,typescript",
+    "prefix": "log",
+    "body": ["console.log($1);"],
+    "description": "Log output to console"
+  },
+  "prettier-config": {
+    "prefix": "prettier-config",
+    "body": [
+      "{",
+      "	\"singleQuote\": true,",
+      "	\"useTabs\": true,",
+      "	\"tabWidth\": 2,",
+      "	\"arrowParens\": \"always\",",
+      "	\"trailingComma\": \"all\"",
+      "}",
+      ""
+    ],
+    "description": "prettier config"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "rr-components": {
+    "prefix": "rr-components",
+    "body": [
+      "@use \"@rr-components/common/src/scss/tokens\" as t;",
+      "@use \"@rr-components/common/src/scss/functions\" as f;",
+      "@use \"@rr-components/common/src/scss/mixins\" as m;"
+    ]
+  },
+  "sr-only": {
+    "prefix": "sr-only",
+    "body": [
+      ".sr-only {",
+      "  border: 0 !important;",
+      "  clip: rect(1px, 1px, 1px, 1px) !important;",
+      "  -webkit-clip-path: inset(50%) !important;",
+      "  clip-path: inset(50%) !important;",
+      "  height: 1px !important;",
+      "  margin: -1px !important;",
+      "  overflow: hidden !important;",
+      "  padding: 0 !important;",
+      "  position: absolute !important;",
+      "  width: 1px !important;",
+      "  white-space: nowrap !important;",
+      "}",
+      ".sr-only-focusable:focus,",
+      ".sr-only-focusable:active {",
+      "  clip: auto !important;",
+      "  -webkit-clip-path: none !important;",
+      "  clip-path: none !important;",
+      "  height: auto !important;",
+      "  margin: auto !important;",
+      "  overflow: visible !important;",
+      "  width: auto !important;",
+      "  white-space: normal !important;",
+      "}"
+    ],
+    "description": "sr-only"
+  },
+  "media-min": {
+    "prefix": "media-min",
+    "body": ["@media (min-width: f.breakpoint($1)) {", "  $2", "}"],
+    "description": "media min"
+  },
+  "media-max": {
+    "prefix": "media-max",
+    "body": ["@media (max-width: f.breakpoint($1, max)) {", "  $2", "}"],
+    "description": "media max"
+  },
+  "reset-button-styles": {
+    "prefix": "reset-button-styles",
+    "body": [
+      ".button {",
+      "  appearance: none;",
+      "  -moz-appearance: none;",
+      "  -webkit-appearance: none;",
+      "  box-shadow: none;",
+      "  border: none;",
+      "  background-color: rgba(0, 0, 0, 0);",
+      "}"
+    ],
+    "description": "Reset button styles"
+  },
+  "srollbar-style": {
+    "prefix": "srollbar-style",
+    "body": [
+      ".container::-webkit-scrollbar {",
+      "  width: 10px;",
+      "}",
+      ".container::-webkit-scrollbar-track {",
+      "  background-color: #cfcfcf;",
+      "  border-radius: 1em;",
+      "}",
+      ".container::-webkit-scrollbar-thumb {",
+      "  background-color: #686868;",
+      "  border-radius: 1em;",
+      "}",
+      ".container {",
+      "  scrollbar-color: #686868 #cfcfcf;",
+      "  scrollbar-width: thin;",
+      "}"
+    ],
+    "description": "Scrollbar style"
+  },
+  "image-set": {
+    "prefix": "image-set",
+    "body": [
+      ".box {",
+      "  background-image: url(\"image111.jpg\");",
+      "  background-image: -webkit-image-set(",
+      "    url(\"image111.avif\") type(\"image/avif\"),",
+      "    url(\"image111.jpg\") type(\"image/jpeg\"));",
+      "  background-image: image-set(",
+      "    url(\"image111.avif\") type(\"image/avif\"),",
+      "    url(\"image111.jpg\") type(\"image/jpeg\"));",
+      "}"
+    ],
+    "description": "Image set in css"
+  },
+  "line-clamp": {
+    "prefix": "line-clamp",
+    "body": [
+      "display: -webkit-box;",
+      "overflow: hidden;",
+      "-webkit-box-orient: vertical;",
+      "-webkit-line-clamp: 2;"
+    ],
+    "description": "Line Clamp"
+  },
+  "image-optimize": {
+    "prefix": "image-optimize",
+    "body": ["loading=\"lazy\"", "decoding=\"async\""],
+    "description": "image-optimize"
+  },
+  "image-width-height": {
+    "prefix": "image-width-height",
+    "body": ["width=\"$1\"", "height=\"$2\""],
+    "description": "image-width-height"
+  },
+  "not-breaking-space-symbol": {
+    "prefix": "11_not-breaking-space",
+    "body": ["&nbsp;"],
+    "description": "Not-Breaking Space Symbol"
+  },
+  "regular-space-symbol": {
+    "prefix": "regular-space-symbol",
+    "body": ["&#32;"],
+    "description": "Regular Space Symbol"
+  },
+  "picture-media": {
+    "prefix": "picture-media",
+    "body": [
+      "<picture>",
+      "  <source srcset=\"image-360.webp\" media=\"(min-width: 300px)\" type=\"image/webp\"/>",
+      "  <source srcset=\"image-360.jpg\" media=\"(min-width: 300px)\" type=\"image/jpeg\"/>",
+      "  <img class=\"\" src=\"image.jpg\" width=\"\" height=\"\" alt=\"image\"/>",
+      "</picture>"
+    ],
+    "description": "description for picture-snippet"
+  }
+}

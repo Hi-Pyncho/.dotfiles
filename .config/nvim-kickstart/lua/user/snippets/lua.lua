@@ -9,9 +9,17 @@ local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
 
-ls.filetype_extend('vue', { 'html' })
-ls.filetype_extend('vue', { 'javascript' })
-
--- ls.add_snippets('vue', {
---   s('vue-import', fmta([[import { <> } from 'vue';]], { i(1) })),
--- })
+ls.add_snippets('lua', {
+  s(
+    'lua-create-snippet',
+    fmta(
+      [[
+      s('<>', fmta(<>))
+      ]],
+      {
+        i(1),
+        i(2),
+      }
+    )
+  ),
+})
