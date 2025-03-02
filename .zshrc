@@ -9,7 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="fletcherm"
-
+HYPRSHOT_DIR="~/hyprshot-images"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -101,10 +101,14 @@ alias open-game-phaser='cd /mnt/d/game-dev/phaser/'
 alias open-config-nvim-windows='cd /mnt/c/Users/pyncho/AppData/Local/nvim'
 alias copy-config-nvim-windows='yes | cp -rf ~/.dotfiles/.config/nvim-kickstart/* /mnt/c/Users/pyncho/AppData/Local/nvim'
 
-alias v='NVIM_APPNAME=nvim-lazyvim nvim' # default Neovim config
-alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
+alias vl='NVIM_APPNAME=nvim-lazyvim nvim' # default Neovim config
+alias v='NVIM_APPNAME=nvim nvim' # Kickstart
 
 alias fd='fdfind'
+
+# vpn
+alias vpn-italy='sudo openvpn --config /etc/openvpn/other-os/Italy,\ Milan\ S2.ovpn'
+alias vpn-rr='cd ~/rr-job/amikaskin/ && sudo openvpn --config tfs.ovpn --askpass pass'
 
 # The way with select config
 vv() {

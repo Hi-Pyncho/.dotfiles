@@ -1,8 +1,8 @@
 [init]
 defaultBranch = main
 [user]
-email = garrakombo@gmail.com
-name = Hi_Pyncho
+	email = garrakombo@gmail.com
+	name = Hi_Pyncho
 [core]
 excludesFile = ~/.dotfiles/.gitignore
 [submodule]
