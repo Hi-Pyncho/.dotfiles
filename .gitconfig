@@ -7,3 +7,5 @@ defaultBranch = main
 excludesFile = ~/.dotfiles/.gitignore
 [submodule]
 recurse = true
+[credential]
+	helper = store

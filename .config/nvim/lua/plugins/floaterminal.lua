@@ -9,11 +9,12 @@ local state = {
 
 local function createFloatingWindow(opts)
   opts = opts or {}
+
   local width = opts.width or math.floor(vim.o.columns * 0.8)
-  local height = opts.height or math.floor(vim.o.columns * 0.8)
+  local height = opts.height or math.floor(vim.o.lines * 0.8)
 
   local col = math.floor((vim.o.columns - width) / 2)
-  local row = math.floor((vim.o.columns - height) / 2)
+  local row = math.floor((vim.o.lines - height) / 2)
 
   local buf = nil
 
