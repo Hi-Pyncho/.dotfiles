@@ -16,6 +16,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('WinNew', {
+  desc = 'Wrap context in windows',
+  group = augroup 'kickstart-wrap-win',
+  command = 'windo set wrap',
+})
+
 vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Highlight when yanking (copying) text',
   group = augroup 'kickstart-term-open',
