@@ -104,6 +104,8 @@ alias copy-config-nvim-windows='yes | cp -rf ~/.dotfiles/.config/nvim-kickstart/
 alias vl='NVIM_APPNAME=nvim-lazyvim nvim' # default Neovim config
 alias v='NVIM_APPNAME=nvim nvim' # Kickstart
 
+alias phaser-create='npx @phaserjs/create-game@latest'
+
 alias fd='fdfind'
 
 alias wifi='nmtui'
