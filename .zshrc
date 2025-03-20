@@ -99,7 +99,7 @@ alias open-game-phaser='cd /mnt/d/game-dev/phaser/'
 
 # windows nvim config
 alias open-config-nvim-windows='cd /mnt/c/Users/pyncho/AppData/Local/nvim'
-alias copy-config-nvim-windows='yes | cp -rf ~/.dotfiles/.config/nvim-kickstart/* /mnt/c/Users/pyncho/AppData/Local/nvim'
+alias copy-config-nvim-windows='yes | cp -rf ~/.dotfiles/.config/nvim/* /mnt/c/Users/pyncho/AppData/Local/nvim'
 
 alias vl='NVIM_APPNAME=nvim-lazyvim nvim' # default Neovim config
 alias v='NVIM_APPNAME=nvim nvim' # Kickstart
