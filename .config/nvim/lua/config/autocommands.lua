@@ -31,6 +31,14 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    vim.opt.tabstop = 2
+    vim.opt.shiftwidth = 2
+    vim.opt.expandtab = true
+  end,
+})
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup 'close_with_q',
