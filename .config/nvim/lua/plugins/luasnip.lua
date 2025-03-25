@@ -1,5 +1,6 @@
 return {
   'L3MON4D3/LuaSnip',
+  event = { 'VeryLazy' },
   dependencies = {
     'saghen/blink.cmp',
     -- 'rafamadriz/friendly-snippets',
