@@ -41,7 +41,7 @@ return {
       desc = 'Grep',
     },
     {
-      '<leader>:',
+      '<leader>s:',
       function()
         Snacks.picker.command_history()
       end,
@@ -364,7 +364,7 @@ return {
       desc = 'Delete Buffer',
     },
     {
-      '<leader>cR',
+      '<leader>fR',
       function()
         Snacks.rename.rename_file()
       end,
@@ -376,20 +376,6 @@ return {
         Snacks.notifier.hide()
       end,
       desc = 'Dismiss All Notifications',
-    },
-    {
-      '<c-/>',
-      function()
-        Snacks.terminal()
-      end,
-      desc = 'Toggle Terminal',
-    },
-    {
-      '<c-_>',
-      function()
-        Snacks.terminal()
-      end,
-      desc = 'which_key_ignore',
     },
   },
 }

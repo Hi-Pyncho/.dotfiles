@@ -25,13 +25,13 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Diagnostic
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to prev [D]iagnostic message' })
 
 -- Marks
 local delMarkOnCurLine = require 'user.functions.deleteMark'
-vim.keymap.set('n', 'dm', delMarkOnCurLine, { desc = 'Remove mark on the current line' })
+vim.keymap.set('n', 'cm', delMarkOnCurLine, { desc = 'Remove mark on the current line' })
 
 -- Buffer
 vim.keymap.set('n', '<M-[>', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Prev buffer', silent = true })
@@ -41,12 +41,13 @@ vim.keymap.set('n', '<C-w>', function()
 end, { desc = 'Remove current buffer' })
 
 -- Misc
-vim.keymap.set('n', '<leader>rc', '<cmd>%s/console.log(.*)//g<cr>', { desc = 'Remove all log functions in the current file' })
+vim.keymap.set('n', '<leader>cr', '<cmd>%s/console.log(.*)//g<cr>', { desc = 'Remove all log functions in the current file' })
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit', silent = true, noremap = true })
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', '<leader><leader>x', '<cmd>:w<cr><cmd>:source %<cr>', { desc = 'Execute current file' })
+vim.keymap.set('n', '<leader>fx', '<cmd>:w<cr><cmd>:source %<cr>', { desc = 'Execute current file' })
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit from insert mode', silent = true, noremap = true })
+vim.keymap.set('n', '<leader>fi', 'gg=G', { desc = 'Reindent whole file' })
 
 -- Delete keymaps
 vim.keymap.set('i', '<c-c>', function() end)
