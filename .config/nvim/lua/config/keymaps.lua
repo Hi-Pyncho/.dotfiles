@@ -15,6 +15,8 @@ vim.keymap.set('i', '<M-k>', '<Esc><Cmd>m .-2<CR>==gi')
 vim.keymap.set('n', '<M-k>', [[<Cmd>execute "move .-" . (v:count1 + 1)<CR>==]])
 vim.keymap.set('v', '<M-k>', [[:<C-U>execute "'<lt>,'>move '<lt>-" . (v:count1 + 1)<CR>gv=gv]])
 
+vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
