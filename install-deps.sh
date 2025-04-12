@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Пакеты для установки (можно редактировать)
-PACKAGES="git tree stow zig lua5.1 ripgrep luarocks"
+PACKAGES="git tree stow zig lua5.1 ripgrep luarocks w3m grim slurp swappy"
 
 # Проверяем, передан ли аргумент дистрибутива
 if [ $# -eq 0 ]; then

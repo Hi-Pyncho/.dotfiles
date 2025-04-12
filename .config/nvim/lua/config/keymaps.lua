@@ -1,3 +1,6 @@
+local delMarkOnCurLine = require 'user.functions.deleteMark'
+local split = require 'user.functions.split'
+
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -32,8 +35,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to prev [D]iagnostic message' })
 
 -- Marks
-local delMarkOnCurLine = require 'user.functions.deleteMark'
-vim.keymap.set('n', 'cm', delMarkOnCurLine, { desc = 'Remove mark on the current line' })
+vim.keymap.set('n', '<leader>cm', delMarkOnCurLine, { desc = 'Remove mark on the current line' })
 
 -- Buffer
 vim.keymap.set('n', '<M-[>', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Prev buffer', silent = true })
@@ -43,13 +45,35 @@ vim.keymap.set('n', '<C-w>', function()
 end, { desc = 'Remove current buffer' })
 
 -- Misc
-vim.keymap.set('n', '<leader>cr', '<cmd>%s/console.log(.*)//g<cr>', { desc = 'Remove all log functions in the current file' })
+vim.keymap.set('n', '<leader>cr', '<cmd>%s/console.log(.*)//g<cr>',
+  { desc = 'Remove all log functions in the current file' })
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit', silent = true, noremap = true })
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>fx', '<cmd>:w<cr><cmd>:source %<cr>', { desc = 'Execute current file' })
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit from insert mode', silent = true, noremap = true })
-vim.keymap.set('n', '<leader>fi', 'gg=G', { desc = 'Reindent whole file' })
+vim.keymap.set('n', '<leader>fi', function()
+  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+  -- Save view to maintain scroll position
+  local view = vim.fn.winsaveview()
+
+  -- Reindent the entire file
+  vim.cmd('normal! gg=G')
+
+  -- Optional: Format using LSP if available
+  local clients = vim.lsp.get_active_clients()
+  if #clients > 0 then
+    vim.lsp.buf.format({ async = false })
+  end
+
+  -- Restore cursor position and view
+  vim.api.nvim_win_set_cursor(0, cursor_pos)
+  vim.fn.winrestview(view)
+
+  -- Notify completion
+  vim.notify("File reindented", vim.log.levels.INFO)
+end, { desc = 'Reindent whole file' })
 
 -- Delete keymaps
 vim.keymap.set('i', '<c-c>', function() end)
@@ -71,6 +95,7 @@ function openTerminal()
 
   job_id = vim.bo.channel
 end
+
 vim.keymap.set('n', '<c-/>', openTerminal, { desc = 'Terminal open' })
 vim.keymap.set('n', '<c-_>', openTerminal, { desc = 'Terminal open' })
 
@@ -81,3 +106,31 @@ end)
 -- better indenting
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
+
+-- oil helper
+vim.keymap.set('n', '<leader>fd', function()
+  local oil = require('oil')
+  local curBuf = vim.api.nvim_get_current_buf()
+  local dir = oil.get_current_dir(curBuf)
+
+  vim.fn.setreg('+', dir)
+end, { desc = 'Copy current dir path to clipboard' })
+
+vim.keymap.set('n', '<leader>fs', function()
+  local oil = require('oil')
+  local curBuf = vim.api.nvim_get_current_buf()
+  local dir = oil.get_current_dir(curBuf)
+  local entry = oil.get_cursor_entry()
+
+  vim.system({ 'du', '-sh', dir .. entry.parsed_name }, { text = true }, function(obj)
+    P(split(obj.stdout, '\t')[1])
+  end)
+end, { desc = 'Show directory size' })
+
+vim.keymap.set('n', '<leader>se', function()
+  local search_term = vim.fn.input("Search term: ")
+  if search_term ~= "" then
+    vim.cmd('silent! grep! "' .. search_term .. '"')
+    vim.cmd('copen') -- open quickfix list
+  end
+end)

@@ -8,13 +8,34 @@
       "",
       "<script setup>",
       "$2",
-      "</script>"
+      "</script>",
+      "",
+      "<style lang=\"scss\" scoped>",
+      "",
+      "</style>"
     ]
   },
   "v-define-props": {
     "prefix": "v-define-props",
     "body": ["defineProps({", "  $1", "});"],
     "description": "v-define-props"
+  },
+  "local locales": {
+    "prefix": "vue-local-locales",
+    "body": [
+      "import ru from './locales/ru.json';",
+      "import en from './locales/en.json';",
+      "import { useI18n } from 'vue-i18n';",
+      "import { langCookies } from '@rr-components/shared-fsd/shared/utils/lang';",
+      "",
+      "const locale = langCookies.getLang();",
+      "const { t } = useI18n({",
+        "  locale,",
+        "  messages: { ru, en }",
+        "});",
+        ""
+    ],
+    "description": "local locales"
   },
   "v-define-props-var": {
     "prefix": "v-define-props-var",
@@ -41,13 +62,13 @@
     "prefix": "prettier-config",
     "body": [
       "{",
-      "	\"singleQuote\": true,",
-      "	\"useTabs\": true,",
-      "	\"tabWidth\": 2,",
-      "	\"arrowParens\": \"always\",",
-      "	\"trailingComma\": \"all\"",
-      "}",
-      ""
+        "	\"singleQuote\": true,",
+        "	\"useTabs\": true,",
+        "	\"tabWidth\": 2,",
+        "	\"arrowParens\": \"always\",",
+        "	\"trailingComma\": \"all\"",
+        "}",
+        ""
     ],
     "description": "prettier config"
   }
