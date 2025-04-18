@@ -1,5 +1,6 @@
 local delMarkOnCurLine = require 'user.functions.deleteMark'
 local split = require 'user.functions.split'
+local reindent = require 'user.functions.reindent'
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -46,34 +47,23 @@ end, { desc = 'Remove current buffer' })
 
 -- Misc
 vim.keymap.set('n', '<leader>cr', '<cmd>%s/console.log(.*)//g<cr>',
-  { desc = 'Remove all log functions in the current file' })
+{ desc = 'Remove all log functions in the current file' })
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit', silent = true, noremap = true })
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>fx', '<cmd>:w<cr><cmd>:source %<cr>', { desc = 'Execute current file' })
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit from insert mode', silent = true, noremap = true })
-vim.keymap.set('n', '<leader>fi', function()
-  local cursor_pos = vim.api.nvim_win_get_cursor(0)
-
-  -- Save view to maintain scroll position
-  local view = vim.fn.winsaveview()
-
-  -- Reindent the entire file
-  vim.cmd('normal! gg=G')
-
-  -- Optional: Format using LSP if available
-  local clients = vim.lsp.get_active_clients()
-  if #clients > 0 then
-    vim.lsp.buf.format({ async = false })
+vim.keymap.set({'n', 'v'}, '<leader>fi', function()
+  -- Для нормального режима
+  if vim.api.nvim_get_mode().mode == 'n' then
+    reindent()
+  else
+    -- Для визуального режима передаем диапазон
+    local start_line = vim.fn.line("'<")
+    local end_line = vim.fn.line("'>")
+    reindent({range = 1, line1 = start_line, line2 = end_line})
   end
-
-  -- Restore cursor position and view
-  vim.api.nvim_win_set_cursor(0, cursor_pos)
-  vim.fn.winrestview(view)
-
-  -- Notify completion
-  vim.notify("File reindented", vim.log.levels.INFO)
-end, { desc = 'Reindent whole file' })
+end, {desc = "Reindent file or selection"})
 
 -- Delete keymaps
 vim.keymap.set('i', '<c-c>', function() end)
@@ -134,3 +124,11 @@ vim.keymap.set('n', '<leader>se', function()
     vim.cmd('copen') -- open quickfix list
   end
 end)
+
+-- git-conflicts
+vim.keymap.set('n', '<leader>gco', '<Plug>(git-conflict-ours)', { desc = 'Git-conflict choose ours'})
+vim.keymap.set('n', '<leader>gct', '<Plug>(git-conflict-theirs)', { desc = 'Git-conflict choose theirs'})
+vim.keymap.set('n', '<leader>gcb', '<Plug>(git-conflict-both)', { desc = 'Git-conflict choose both'})
+vim.keymap.set('n', '<leader>gc0', '<Plug>(git-conflict-none)', { desc = 'Git-conflict choose none'})
+vim.keymap.set('n', '[x', '<Plug>(git-conflict-prev-conflict)', { desc = 'Git-conflict prev'})
+vim.keymap.set('n', ']x', '<Plug>(git-conflict-next-conflict)', { desc = 'Git-conflict next'})

@@ -58,6 +58,18 @@
     "body": ["console.log($1);"],
     "description": "Log output to console"
   },
+  "v-template-brackets": {
+    "scope": "vue",
+    "prefix": "v-brackets",
+    "body": ["{{ $1 }}"],
+    "description": "Add template brackets"
+  },
+  "v-template-brackets-locale": {
+    "scope": "vue",
+    "prefix": "v-brackets-locale",
+    "body": ["{{ t('$1') }}"],
+    "description": "Add template brackets"
+  },
   "prettier-config": {
     "prefix": "prettier-config",
     "body": [
