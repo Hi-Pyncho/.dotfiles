@@ -1,6 +1,6 @@
-session_root "~/rr-job/git/RussiaRunningApp/"
+session_root "~/rr-job/git/LkApp/"
 
-if initialize_session "rr-new-app"; then
+if initialize_session "rr-lk"; then
   new_window "code"
   new_window "lazygit"
   new_window "rr-vpn"

@@ -1,5 +1,6 @@
 return {
   'nativerv/cyrillic.nvim',
+  enabled = false,
   event = { 'VeryLazy' },
   config = function()
     require('cyrillic').setup {

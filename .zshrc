@@ -82,6 +82,10 @@ else
   export EDITOR='nvim'
 fi
 
+export MANPAGER='nvim +Man!'
+
+source /usr/share/wikiman/widgets/widget.zsh
+
 # exports
 #
 # nvm

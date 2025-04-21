@@ -1,5 +1,5 @@
 local delMarkOnCurLine = require 'user.functions.deleteMark'
-local split = require 'user.functions.split'
+local stringUtils = require('user.luaUtils.string')
 local reindent = require 'user.functions.reindent'
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -32,8 +32,14 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Diagnostic
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to prev [D]iagnostic message' })
+vim.keymap.set('n', ']d', function ()
+  local res = vim.diagnostic.jump({ count = 1, float = true })
+  -- vim.diagnostic.show()
+  P(res)
+end, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '[d', function ()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = 'Go to prev [D]iagnostic message' })
 
 -- Marks
 vim.keymap.set('n', '<leader>cm', delMarkOnCurLine, { desc = 'Remove mark on the current line' })
@@ -51,7 +57,7 @@ vim.keymap.set('n', '<leader>cr', '<cmd>%s/console.log(.*)//g<cr>',
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit', silent = true, noremap = true })
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', '<leader>fx', '<cmd>:w<cr><cmd>:source %<cr>', { desc = 'Execute current file' })
+vim.keymap.set({ 'n', 'v' }, '<leader>fx', '<cmd>:w<cr><cmd>:source %<cr>', { desc = 'Execute current file' })
 vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit from insert mode', silent = true, noremap = true })
 vim.keymap.set({'n', 'v'}, '<leader>fi', function()
   -- Для нормального режима
@@ -112,9 +118,11 @@ vim.keymap.set('n', '<leader>fs', function()
   local dir = oil.get_current_dir(curBuf)
   local entry = oil.get_cursor_entry()
 
-  vim.system({ 'du', '-sh', dir .. entry.parsed_name }, { text = true }, function(obj)
-    P(split(obj.stdout, '\t')[1])
-  end)
+  if entry then
+    vim.system({ 'du', '-sh', dir .. entry.parsed_name }, { text = true }, function(obj)
+      P(stringUtils.split(obj.stdout, '\t')[1])
+    end)
+  end
 end, { desc = 'Show directory size' })
 
 vim.keymap.set('n', '<leader>se', function()
@@ -123,7 +131,7 @@ vim.keymap.set('n', '<leader>se', function()
     vim.cmd('silent! grep! "' .. search_term .. '"')
     vim.cmd('copen') -- open quickfix list
   end
-end)
+end, { desc = 'system grep'} )
 
 -- git-conflicts
 vim.keymap.set('n', '<leader>gco', '<Plug>(git-conflict-ours)', { desc = 'Git-conflict choose ours'})

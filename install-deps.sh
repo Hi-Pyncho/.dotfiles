@@ -1,9 +1,7 @@
 #!/bin/sh
 
-# Пакеты для установки (можно редактировать)
-PACKAGES="git tree stow zig lua5.1 ripgrep luarocks w3m grim slurp swappy"
+PACKAGES="git tree stow zig lua5.1 ripgrep luarocks w3m grim slurp swappy tealdeer wikiman arch-wiki-docs"
 
-# Проверяем, передан ли аргумент дистрибутива
 if [ $# -eq 0 ]; then
     echo "Использование: $0 <дистрибутив>"
     echo "Доступные дистрибутивы: arch, ubuntu"
@@ -12,11 +10,9 @@ fi
 
 DISTRO="$1"
 
-# Функция для проверки и установки пакетов
 install_packages() {
     case "$DISTRO" in
         arch)
-            # Проверяем, доступен ли yay
             if command -v yay >/dev/null 2>&1; then
                 PKG_MANAGER="yay"
             else
@@ -56,5 +52,4 @@ install_packages() {
     esac
 }
 
-# Устанавливаем пакеты
 install_packages
