@@ -1,0 +1,2 @@
+
+alias wifi='nmtui'

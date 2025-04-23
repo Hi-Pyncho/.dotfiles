@@ -33,9 +33,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Diagnostic
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', ']d', function ()
-  local res = vim.diagnostic.jump({ count = 1, float = true })
-  -- vim.diagnostic.show()
-  P(res)
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '[d', function ()
   vim.diagnostic.jump({ count = -1, float = true })
@@ -83,7 +81,7 @@ end, { desc = 'Flash and jump to position' })
 vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Switch to normal mode' })
 
 local job_id = 0
-function openTerminal()
+local function openTerminal()
   vim.cmd.vnew()
   vim.cmd.term()
   vim.cmd.wincmd 'J'
