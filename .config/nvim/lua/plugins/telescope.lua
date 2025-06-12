@@ -99,6 +99,23 @@ return { -- Fuzzy Finder (files, lsp, etc)
         no_ignore_parent = true,
       }
     end, { desc = 'Search files in node_modules' })
+    
+    -- Search in notes
+    vim.keymap.set('n', '<leader>si', function()
+      builtin.find_files {
+        cwd = '~/Notes',
+      }
+    end, { desc = 'Search files in notes' })
+
+    vim.keymap.set('n', '<leader>sI', function()
+      builtin.live_grep {
+        grep_open_files = false,
+        search_dirs = {
+          '~/Notes/'
+        },
+        prompt_title = 'Live Grep in Notes Files',
+      }
+    end, { desc = 'Search in Notes files' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()

@@ -13,6 +13,9 @@ return {
   -- build = 'nix run .#build-plugin',
 
   opts = {
+    fuzzy = {
+      implementation = 'lua',
+    },
     signature = {
       enabled = true,
     },

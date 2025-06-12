@@ -1,4 +1,4 @@
-session_root "~/rr-job/git/RussiaRunning.Results.Frontend/"
+session_root "~/rr-job/git/RussiaRunning/"
 
 if initialize_session "rr-lk"; then
   new_window "code"
@@ -8,6 +8,7 @@ if initialize_session "rr-lk"; then
   run_cmd "lazygit"
 
   select_window "code"
+  run_cmd "cd ~/rr-job/git/RussiaRunning/src/Web/RussiaRunning.Web.Chrono/Content/live-vue/"
   run_cmd "nvim"
 fi
 

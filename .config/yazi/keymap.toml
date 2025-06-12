@@ -1,0 +1,9 @@
+[manager]
+prepend_keymap = [
+  { on = "<Enter>", run = "enter", desc = "Enter the child directory" },
+  { on = "<Backspace>", run = "leave", desc = "Back to the parent directory" },
+  { on = "-", run = "leave", desc = "Back to the parent directory" },
+  { on = "e", run = "open", desc = "Open selected files" },
+  { on = "h", run = "nothing", desc = "Do nothing" },
+  { on = "l", run = "nothing", desc = "Do nothing" },
+]

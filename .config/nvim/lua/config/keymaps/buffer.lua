@@ -1,0 +1,5 @@
+vim.keymap.set('n', '<M-[>', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Prev buffer', silent = true })
+vim.keymap.set('n', '<M-]>', '<cmd>BufferLineCycleNext<CR>', { desc = 'Next buffer', silent = true })
+vim.keymap.set('n', '<C-w>', function()
+  Snacks.bufdelete()
+end, { desc = 'Remove current buffer' })

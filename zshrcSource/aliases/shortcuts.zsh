@@ -1,4 +1,3 @@
-
 alias fd='fdfind'
 alias todo='v ~/todo.md'
 
@@ -10,3 +9,18 @@ alias v='NVIM_APPNAME=nvim nvim' # Kickstart
 alias ll='ls -lha'
 alias lld='ls -lha | grep "^d"'
 alias llf='ls -lha | grep "^-"'
+
+alias t="tmux"
+alias ts="tmuxifier s"
+
+alias dev="pnpm run dev"
+
+# yazi
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}

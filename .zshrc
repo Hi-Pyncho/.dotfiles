@@ -21,6 +21,9 @@ source ~/.dotfiles/zshrcSource/aliases/work.zsh
 source ~/.dotfiles/zshrcSource/aliases/game-dev.zsh
 # vpn
 source ~/.dotfiles/zshrcSource/aliases/vpn.zsh
+# screen
+source ~/.dotfiles/zshrcSource/aliases/screen.zsh
 
 # WIKIMAN
 source /usr/share/wikiman/widgets/widget.zsh
+

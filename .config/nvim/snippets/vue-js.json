@@ -58,6 +58,16 @@
     "body": ["console.log($1);"],
     "description": "Log output to console"
   },
+  "dirname": {
+    "prefix": "dirname",
+    "body": [
+      "import { dirname } from 'node:path';",
+      "import { fileURLToPath } from 'node:url';",
+      "",
+      "const __dirname = dirname(fileURLToPath(import.meta.url));"
+    ],
+    "description": "dirname"
+  },
   "v-template-brackets": {
     "scope": "vue",
     "prefix": "v-brackets",

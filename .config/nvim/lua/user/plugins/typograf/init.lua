@@ -2,7 +2,7 @@ local getClipboardContent = require "user.nvimHelpers.getClipboardContent"
 
 local M = {}
 
-function M.setup(config) 
+function M.setup(config)
   config = config or {}
 
   vim.keymap.set('n', '<leader>cv', function ()
