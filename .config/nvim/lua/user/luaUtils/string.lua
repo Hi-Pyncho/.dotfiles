@@ -24,6 +24,22 @@ function M.replace(input, oldStr, newStr)
   return result
 end
 
+---@param value string
+---@return string
+function M.trim(value)
+  return (value:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+---@param value string|nil
+---@return boolean
+function M.isEmpty(value)
+  if type(value) == "string" then
+    return M.trim(value) == ''
+  end
+
+  return true
+end
+
 ---@param input string
 ---@param replacements table Table of {[old]=new} pairs
 ---@return string

@@ -1,4 +1,3 @@
-
 require('config.keymaps.moving-and-editing')
 require('config.keymaps.diagnostic')
 require('config.keymaps.marks')
@@ -8,3 +7,4 @@ require('config.keymaps.terminal')
 require('config.keymaps.oil')
 require('config.keymaps.git')
 require('config.keymaps.misc')
+require('config.keymaps.imagemagick')

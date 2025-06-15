@@ -10,8 +10,9 @@ WAYLAND="slurp swappy wf-recorder grim"
 WEB="w3m"
 UTILS="plocate"
 VIEWERS="zathura zathura-pdf-poppler"
+IMAGE="imagemagick"
 
-PACKAGES="$MAIN $INFO $TERMINAL $WAYLAND $WEB $AUDIO $UTILS $BLUETOOTH"
+PACKAGES="$MAIN $INFO $TERMINAL $WAYLAND $WEB $AUDIO $UTILS $BLUETOOTH $IMAGE"
 
 if [ $# -eq 0 ]; then
   echo "Использование: $0 <дистрибутив>"

@@ -10,11 +10,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>fx', function ()
 
   if filetype == 'javascript' then
     vim.cmd('!node %')
-    -- local filepath = vim.fn.expand("%:p")
-    --
-    -- vim.system({ 'node', filepath }, { text = true }, function(obj)
-    --   P(obj)
-    -- end)
   end
 
 end, { desc = 'Execute current file' })
@@ -34,4 +29,4 @@ end, {desc = "Reindent file or selection"})
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
 -- P(vim.fn.expand('%:t:r'))
-P(vim.fn.expand("%:p"))
+-- P(vim.fn.expand("%:p"))

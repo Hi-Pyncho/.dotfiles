@@ -6,13 +6,21 @@ function M.getFolderPathUnderCursor()
   return oil.get_current_dir(curBuf)
 end
 
-function M.getFilePathUnderCursor()
+function M.getFilenameUnderCursor()
   local oil = require('oil')
   local entry = oil.get_cursor_entry()
+
+  if entry then
+    return entry.parsed_name
+  end
+end
+
+function M.getFilePathUnderCursor()
+  local filename = M.getFilenameUnderCursor()
   local dirPath = M.getFolderPathUnderCursor()
 
-  if entry and dirPath then
-    return dirPath..entry.parsed_name
+  if filename and dirPath then
+    return dirPath..filename
   end
 
   return nil

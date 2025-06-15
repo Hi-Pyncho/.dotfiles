@@ -6,7 +6,6 @@ function M.fileExists(absoluteFilePath)
   assert(absoluteFilePath ~= nil, 'filePath param is nil')
 
   local file = io.open(absoluteFilePath, 'rb')
-  P(file)
 
   if file then file:close() end
 
