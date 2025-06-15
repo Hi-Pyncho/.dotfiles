@@ -7,7 +7,20 @@
   </span>
   <span></span>
   <span></span>
+  <div class="block">
+    <div class="block__inner block__outer">
+      <a href="block__link text-small"></a>
+    </div>
+    <p class="block__text">sdfsdfsdf</p>
+  </div>
 </template>
 
 <script setup>
+  console.log();
 </script>
+
+<style>
+h1 {
+  color: red;
+}
+</style>

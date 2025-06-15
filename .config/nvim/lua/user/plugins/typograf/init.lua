@@ -1,4 +1,4 @@
-local getClipboardContent = require "user.nvimHelpers.getClipboardContent"
+local clipboard = require "user.nvimHelpers.clipboard"
 
 local M = {}
 
@@ -6,7 +6,7 @@ function M.setup(config)
   config = config or {}
 
   vim.keymap.set('n', '<leader>cv', function ()
-    local clipboardContent = getClipboardContent()
+    local clipboardContent = clipboard.get()
     local cmdCommand = "read !echo '" .. clipboardContent .. "' | typograf -l ru --stdin --html-entity-type name"
     vim.cmd(cmdCommand)
   end, { desc = 'Typograf text from clipboard and paste' })

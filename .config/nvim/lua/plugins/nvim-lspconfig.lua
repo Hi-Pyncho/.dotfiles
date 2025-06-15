@@ -78,14 +78,7 @@ return {
           end,
         },
       },
-      volar = {
-        filetypes = { 'vue' },
-        init_options = {
-          vue = {
-            hybridMode = false
-          }
-        }
-      },
+      volar = {},
       emmet_language_server = {
         filetypes = {'html', 'css', 'scss', 'vue' },
         init_options = {
@@ -94,9 +87,7 @@ return {
           }
         }
       },
-      cssls = {
-        filetypes = { 'scss', 'css', 'vue' }
-      },
+      cssls = {},
       lua_ls = {},
     }
 

@@ -2,6 +2,17 @@
 @use "@rr-components/common/src/scss/functions" as f;
 @use "@rr-components/common/src/scss/mixins" as m;
 
+.block {
+  // .block__inner
+  &__inner {}
+
+  // .block__outer
+  &__outer {}
+
+  // .block__text
+  &__text {}
+}
+
 h1 {
   flex-direction: column;
 }

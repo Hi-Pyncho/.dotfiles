@@ -15,6 +15,4 @@ local function getSelectedText()
   return selected_text
 end
 
-P(getSelectedText())
-
 return getSelectedText
