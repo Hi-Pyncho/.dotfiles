@@ -1,4 +1,3 @@
-
 alias open-git-job='cd /mnt/d/git/'
 alias open-git-rr='cd /mnt/d/git/RussiaRunning/src/Web/RussiaRunning.Web/'
 alias open-git-rr-live='cd /mnt/d/git/RussiaRunning/src/Web/RussiaRunning.Web.Chrono/Content/live-vue'
