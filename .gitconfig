@@ -10,3 +10,6 @@
   recurse = true
 [credential]
   helper = store
+[push]
+  autoSetupRemote = true  # easier to push new branches
+  default = current  # push only current branch by default
