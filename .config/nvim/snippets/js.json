@@ -1,0 +1,60 @@
+{
+  "log": {
+    "scope": "javascript,typescript",
+    "prefix": "log",
+    "body": ["console.log($1);"],
+    "description": "Log output to console"
+  },
+  "jsdoc": {
+    "scope": "javascript,typescript",
+    "prefix": "jsdoc",
+    "body": [
+      "/**",
+      "  * $1",
+      "  */"
+    ],
+    "description": "add js doc annotation"
+  },
+  "jsdoc-one-line": {
+    "scope": "javascript,typescript",
+    "prefix": "jsdoc-one-line",
+    "body": [ "/** $1 */" ],
+    "description": "add js doc annotation"
+  },
+  "references": {
+    "scope": "javascript,typescript",
+    "prefix": "references",
+    "body": ["/// <reference path=\"\" />"],
+    "description": "add references to types"
+  },
+  "ts-check": {
+    "scope": "javascript,typescript",
+    "prefix": "ts-check",
+    "body": ["// @ts-check"],
+    "description": "add ts check for entire file"
+  },
+  "dirname": {
+    "prefix": "dirname",
+    "body": [
+      "import { dirname } from 'node:path';",
+      "import { fileURLToPath } from 'node:url';",
+      "",
+      "const __dirname = dirname(fileURLToPath(import.meta.url));"
+    ],
+    "description": "dirname"
+  },
+  "prettier-config": {
+    "prefix": "prettier-config",
+    "body": [
+      "{",
+        "	\"singleQuote\": true,",
+        "	\"useTabs\": true,",
+        "	\"tabWidth\": 2,",
+        "	\"arrowParens\": \"always\",",
+        "	\"trailingComma\": \"all\"",
+        "}",
+        ""
+    ],
+    "description": "prettier config"
+  }
+}

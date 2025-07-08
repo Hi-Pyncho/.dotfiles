@@ -4,7 +4,3 @@ type Test = {
   length: number,
   isActive: boolean,
 };
-
-function test(params: Test) {
-  console.log(params);
-}

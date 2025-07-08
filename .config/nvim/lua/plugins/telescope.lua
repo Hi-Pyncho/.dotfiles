@@ -56,7 +56,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
           },
         },
       },
-      -- pickers = {}
+      pickers = {
+        live_grep = {
+          additional_args = { "--hidden" },
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
@@ -99,7 +103,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         no_ignore_parent = true,
       }
     end, { desc = 'Search files in node_modules' })
-    
+
     -- Search in notes
     vim.keymap.set('n', '<leader>si', function()
       builtin.find_files {

@@ -28,33 +28,45 @@ return {
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-          local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            buffer = event.buf,
-            group = highlight_augroup,
-            callback = vim.lsp.buf.document_highlight,
-          })
 
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            buffer = event.buf,
-            group = highlight_augroup,
-            callback = vim.lsp.buf.clear_references,
-          })
-
-          vim.api.nvim_create_autocmd('LspDetach', {
-            group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
-            callback = function(event2)
-              vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
-            end,
-          })
+        local filetype = vim.api.nvim_get_option_value('filetype', { buf = event.buf} )
+        local line_count = vim.api.nvim_buf_line_count(event.buf)
+        local filename = vim.api.nvim_buf_get_name(event.buf)
+        if filetype == 'typescript' and string.match(filename, "%.d%.ts$") and line_count > 1000 then
+          client.stop()  -- Отключаем LSP для этого буфера
+          return
         end
+
+        -- P(filetype)
+        -- P(line_count)
+        -- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        --   local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+        --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        --     buffer = event.buf,
+        --     group = highlight_augroup,
+        --     callback = vim.lsp.buf.document_highlight,
+        --   })
+        --
+        --   vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+        --     buffer = event.buf,
+        --     group = highlight_augroup,
+        --     callback = vim.lsp.buf.clear_references,
+        --   })
+        --
+        --   vim.api.nvim_create_autocmd('LspDetach', {
+        --     group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+        --     callback = function(event2)
+        --       vim.lsp.buf.clear_references()
+        --       vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+        --     end,
+        --   })
+        -- end
       end,
     })
 
     local servers = {
       ts_ls = {
+        -- filetypes = {'javascript', 'typescript' },
         filetypes = { 'vue', 'javascript', 'typescript' },
         init_options = {
           preferences = {
@@ -78,7 +90,19 @@ return {
           end,
         },
       },
-      volar = {},
+      volar = {
+        name = 'vue_ls',
+        cmd = { "vue-language-server", "--stdio" },
+        init_options = {
+          vue = {
+            hybridMode = true,
+          },
+          -- typescript = {
+          --   -- replace with your global TypeScript library path
+          --   tsdk = vim.fn.expand "$MASON/packages/vue-language-server/node_modules/typescript/lib"
+          -- }
+        },
+      },
       emmet_language_server = {
         filetypes = {'html', 'css', 'scss', 'vue' },
         init_options = {

@@ -7,7 +7,15 @@
           "javascript",
           "vue"
         ],
-        "path": "./vue-js.json"
+        "path": "./vue.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "typescript",
+          "vue"
+        ],
+        "path": "./js.json"
       },
       {
         "language": [

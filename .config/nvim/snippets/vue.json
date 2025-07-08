@@ -20,8 +20,8 @@
     "body": ["defineProps({", "  $1", "});"],
     "description": "v-define-props"
   },
-  "local locales": {
-    "prefix": "vue-local-locales",
+  "v-local locales": {
+    "prefix": "v-local-locales",
     "body": [
       "import ru from './locales/ru.json';",
       "import en from './locales/en.json';",
@@ -52,13 +52,19 @@
     "body": ["import { $1 } from 'vue-router';"],
     "description": "v-import"
   },
-  "log": {
+  "13_log": {
     "scope": "javascript,typescript",
     "prefix": "log",
     "body": ["console.log($1);"],
     "description": "Log output to console"
   },
-  "dirname": {
+  "13_references": {
+    "scope": "javascript,typescript",
+    "prefix": "references",
+    "body": ["/// <reference path=\"./types/filename.d.ts\" />"],
+    "description": "Log output to console"
+  },
+  "13_dirname": {
     "prefix": "dirname",
     "body": [
       "import { dirname } from 'node:path';",
@@ -79,6 +85,12 @@
     "prefix": "v-brackets-locale",
     "body": ["{{ t('$1') }}"],
     "description": "Add template brackets"
+  },
+  "v-space": {
+    "scope": "vue",
+    "prefix": "v-space",
+    "body": ["&nbsp;"],
+    "description": "Add space"
   },
   "prettier-config": {
     "prefix": "prettier-config",

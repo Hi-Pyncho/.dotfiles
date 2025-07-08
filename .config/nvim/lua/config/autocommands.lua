@@ -100,3 +100,19 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("BufRead", {
+  callback = function(args)
+    local line_count = vim.api.nvim_buf_line_count(args.buf)
+    if line_count > 10000 then
+      vim.notify("Большой файл (" .. line_count .. " строк), отключаю плагины...", vim.log.levels.WARN)
+      vim.bo[args.buf].swapfile = false
+      vim.bo[args.buf].undofile = false
+      vim.bo[args.buf].syntax = 'off'
+      vim.bo[args.buf].filetype = 'off'
+      vim.treesitter.stop()
+      vim.opt.lazyredraw = true  -- отключает перерисовку экрана
+      vim.opt.foldmethod = "manual"  -- отключает автоматическое фолдинг
+    end
+  end,
+})

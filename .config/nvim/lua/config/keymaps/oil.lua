@@ -23,7 +23,7 @@ vim.keymap.set('n', '<leader>fu', function()
     vim.system({ 'unzip', filepath, '-d', dirPath..dirname })
   end)
 
-end, { desc = 'Copy current file path to clipboard' })
+end, { desc = 'Unzip archive file' })
 
 vim.keymap.set('n', '<leader>fs', function()
   local filePath = oilHelper.getFilePathUnderCursor()
