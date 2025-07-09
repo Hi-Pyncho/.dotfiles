@@ -36,3 +36,6 @@ export PATH="$PATH:$HOME/go/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# sudo
+export SUDO_EDITOR="nvim"
