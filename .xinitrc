@@ -1,6 +1,11 @@
+xkb-switch -W | while read -r event; do
+  pkill -RTMIN+3 dwmblocks
+done &
+~/.dotfiles/scripts/handle-monitors.sh
+xsetroot -solid "#111315"
+flameshot &
+dunst &
 clipit &
-twm &
 kitty &
-nitrogen --restore &
-picom &
+dwmblocks &
 exec dwm
