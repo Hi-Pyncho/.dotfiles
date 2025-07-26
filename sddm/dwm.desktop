@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=DWM
+Comment=Dynamic Window Manager
+Exec=sh -c "$HOME/.xinitrc"
+Type=Application
+EOF
