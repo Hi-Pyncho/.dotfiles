@@ -39,3 +39,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # sudo
 export SUDO_EDITOR="nvim"
+
+export TERMINAL="kitty"

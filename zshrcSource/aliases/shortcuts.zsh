@@ -3,8 +3,8 @@ alias todo='v ~/todo.md'
 
 alias notes='cd ~/Notes/ && v'
 
-alias open-config-nvim='cd ~/.config/nvim && nvim'
-alias open-obsidian-notes='cd /mnt/d/notes/ && nvim'
+alias nvim-config='cd ~/.config/nvim && nvim'
+alias dotfiles="cd ~/.dotfiles && nvim"
 
 alias v='NVIM_APPNAME=nvim nvim'
 alias vs='sudo -E nvim'
@@ -17,6 +17,7 @@ alias t="tmux"
 alias ts="tmuxifier s"
 
 alias dev="pnpm run dev"
+alias zshupdate="exec zsh && . ~/.dotfiles/.zshrc"
 
 # yazi
 function y() {
@@ -27,3 +28,11 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+
+# dwm
+alias cdwm="v ~/.dotfiles/dwm/config.h"
+alias mdwm="cd ~/.dotfiles/dwm; sudo make clean install; cd -"
+alias mdwmb="cd ~/.dotfiles/dwmblocks; sudo make clean install; cd -"
+alias dwm-xephyr="startx -- /usr/bin/Xephyr -screen 800x600 :1"
+alias dwm-config="v ~/.dotfiles/dwm/config.h"
+alias dwmblocks-config="cd ~/.dotfiles/dwmblocks/ && v config.h"
