@@ -1,1 +1,3 @@
-P(string.match('/home/pyncho/.dotfiles/.config/nvim/test/test.d.ts', "%.d%.ts$"))
+local file = require('user.nvimHelpers.file')
+
+file.createTempFile()

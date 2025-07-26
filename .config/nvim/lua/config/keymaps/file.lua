@@ -1,4 +1,7 @@
 local reindent = require 'user.functions.reindent'
+local fileUtils = require 'user.nvimHelpers.file'
+
+vim.keymap.set('n', '<leader>ft', fileUtils.createTempFile, { desc = 'Create temp file' })
 
 vim.keymap.set({ 'n', 'v' }, '<leader>fx', function ()
   local filetype = vim.bo.filetype
@@ -27,6 +30,3 @@ vim.keymap.set({'n', 'v'}, '<leader>fi', function()
 end, {desc = "Reindent file or selection"})
 
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
-
--- P(vim.fn.expand('%:t:r'))
--- P(vim.fn.expand("%:p"))

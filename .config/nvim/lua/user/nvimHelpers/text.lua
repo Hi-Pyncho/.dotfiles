@@ -1,4 +1,6 @@
-local function getSelectedText()
+local M = {}
+
+function M.getSelectedText()
   -- Save the current register contents
   local saved_reg = vim.fn.getreg('"')
   local saved_regtype = vim.fn.getregtype('"')
@@ -15,4 +17,4 @@ local function getSelectedText()
   return selected_text
 end
 
-return getSelectedText
+return M

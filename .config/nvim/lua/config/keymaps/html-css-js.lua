@@ -1,5 +1,5 @@
 local clipboard = require('user.nvimHelpers.clipboard')
-local getSelectedText = require('user.nvimHelpers.getSelectedText')
+local text = require('user.nvimHelpers.text')
 
 vim.keymap.set('v', '<leader>ch', function ()
   local function generateScssFromHtml(html_str)
@@ -61,7 +61,7 @@ vim.keymap.set('v', '<leader>ch', function ()
     return table.concat(scss, '\n')
   end
 
-  local res = generateScssFromHtml(getSelectedText())
+  local res = generateScssFromHtml(text.getSelectedText())
 
   clipboard.set(res)
 end, { desc = 'Generate scss from html' })

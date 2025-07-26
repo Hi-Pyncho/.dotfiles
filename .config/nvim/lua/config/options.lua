@@ -1,8 +1,12 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'preview' }
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "#24273a" })
+
+-- Цвет текста и фона строки статуса
+vim.api.nvim_set_hl(0, "StatusLine", { fg = "#ffffff", bg = "#3b4252" })
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true

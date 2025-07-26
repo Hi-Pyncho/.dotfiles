@@ -1,5 +1,6 @@
 return {
   "monkoose/DoNe",
+  enabled = false,
   lazy = true,
   -- optional configuration
   config = function()
