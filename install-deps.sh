@@ -9,7 +9,10 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-MAIN="nvim stow zig lua5.1 ripgrep luarocks xdg-user-dirs usbutils lshw htop kitty zsh tmux"
+MAIN="nvim stow zig lua5.1 ripgrep luarocks usbutils lshw htop kitty zsh tmux rofi ncdu wireplumber"
+X11="xkblayout-state xorg-server-xephyr xdg-user-dirs xkb-switch"
+NOTIFY="dunst libnotify"
+OTHER="qbittorrent virtualbox"
 BROWSERS="google-chrome firefox"
 CLIPBOARD="xcel xclip clipit"
 INFO="tealdeer wikiman arch-wiki-docs"
@@ -23,7 +26,7 @@ UTILS="plocate lazygit"
 VIEWERS="zathura zathura-pdf-poppler"
 IMAGE="imagemagick inkscape"
 
-PACKAGES="$MAIN $INFO $TERMINAL $WEB $AUDIO $UTILS $BLUETOOTH $IMAGE $CLIPBOARD $BROWSERS"
+PACKAGES="$MAIN $INFO $TERMINAL $WEB $AUDIO $UTILS $BLUETOOTH $IMAGE $CLIPBOARD $BROWSERS $X11"
 PKG_MANAGER="yay"
 
 install_packages() {
