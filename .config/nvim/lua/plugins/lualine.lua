@@ -1,4 +1,4 @@
-local path = require('user.luaUtils.path')
+local gitUtils = require('user.luaUtils.git')
 
 return {
   -- enabled = false,
@@ -6,7 +6,7 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function ()
     local function currentPath()
-      return path.getGitRelativePath() or ''
+      return gitUtils.getRelativePath() or ''
     end
 
     require('lualine').setup({

@@ -1,10 +1,20 @@
 local M = {}
 
-function M.getGitRelativePath()
-  local filePath = vim.fn.expand('%:p');
+function M.getRootPath()
   local gitRoot = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
 
   if (vim.v.shell_error ~= 0) then
+    return nil
+  end
+
+  return gitRoot
+end
+
+function M.getRelativePath()
+  local filePath = vim.fn.expand('%:p');
+  local gitRoot = M.getRootPath()
+
+  if (not gitRoot) then
     return filePath
   end
 
