@@ -1,8 +1,10 @@
 return {
   'ibhagwan/fzf-lua',
-  opts = {
-    lsp = {
-      jump1 = true
-    }
-  }
+  config = function()
+    require('fzf-lua').setup({
+      lsp = {
+        jump1 = true
+      }
+    })
+  end
 }

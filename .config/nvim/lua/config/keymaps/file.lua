@@ -7,12 +7,16 @@ vim.keymap.set({ 'n', 'v' }, '<leader>fx', function ()
   local filetype = vim.bo.filetype
 
   if filetype == 'lua' then
-    vim.cmd('w')
+    vim.cmd('write')
     vim.cmd('source %')
   end
 
   if filetype == 'javascript' then
-    vim.cmd('!node %')
+    fileUtils.executeAndPrint('node %s')
+  end
+
+  if filetype == 'c' then
+    fileUtils.executeAndPrint('gcc %s -o /tmp/a.out && /tmp/a.out')
   end
 
 end, { desc = 'Execute current file' })

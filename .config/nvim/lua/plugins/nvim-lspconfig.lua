@@ -17,7 +17,7 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        map('gd', '<cmd>FzfLua lsp_definitions     jump_to_single_result=true ignore_current_line=true<cr>', '[G]oto [D]efinition')
+        map('gd', '<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>', '[G]oto [D]efinition')
         map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -36,48 +36,40 @@ return {
           client.stop()  -- Отключаем LSP для этого буфера
           return
         end
-
-        -- P(filetype)
-        -- P(line_count)
-        -- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-        --   local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
-        --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-        --     buffer = event.buf,
-        --     group = highlight_augroup,
-        --     callback = vim.lsp.buf.document_highlight,
-        --   })
-        --
-        --   vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-        --     buffer = event.buf,
-        --     group = highlight_augroup,
-        --     callback = vim.lsp.buf.clear_references,
-        --   })
-        --
-        --   vim.api.nvim_create_autocmd('LspDetach', {
-        --     group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
-        --     callback = function(event2)
-        --       vim.lsp.buf.clear_references()
-        --       vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
-        --     end,
-        --   })
-        -- end
       end,
     })
 
+    local vue_language_server_path = vim.fn.expand "$MASON/packages/vue-language-server/node_modules/@vue/language-server"
+    local vue_plugin = {
+      name = '@vue/typescript-plugin',
+      location = vue_language_server_path,
+      languages = { 'vue' },
+      configNamespace = 'typescript',
+    }
+    local vtsls_config = {
+      settings = {
+        vtsls = {
+          tsserver = {
+            globalPlugins = {
+              vue_plugin,
+            },
+          },
+        },
+      },
+      filetypes = { 'vue' },
+    }
+
+    local vue_ls_config = {}
+    vim.lsp.config('vtsls', vtsls_config)
+    vim.lsp.config('vue_ls', vue_ls_config)
+    vim.lsp.enable({'vtsls', 'vue_ls'})
+
     local servers = {
       ts_ls = {
-        -- filetypes = {'javascript', 'typescript' },
-        filetypes = { 'vue', 'javascript', 'typescript' },
+        filetypes = {'javascript', 'typescript' },
         init_options = {
           preferences = {
             quotePreference = 'single',
-          },
-          plugins = {
-            {
-              name = '@vue/typescript-plugin',
-              location = vim.fn.expand "$MASON/packages/vue-language-server/node_modules/@vue/language-server",
-              languages = { 'vue' },
-            },
           },
         },
         handlers = {
@@ -90,38 +82,26 @@ return {
           end,
         },
       },
-      volar = {
-        name = 'vue_ls',
-        cmd = { "vue-language-server", "--stdio" },
-        init_options = {
-          vue = {
-            hybridMode = true,
-          },
-          -- typescript = {
-          --   -- replace with your global TypeScript library path
-          --   tsdk = vim.fn.expand "$MASON/packages/vue-language-server/node_modules/typescript/lib"
-          -- }
-        },
-      },
-      emmet_language_server = {
-        filetypes = {'html', 'css', 'scss', 'vue' },
-        init_options = {
-          includeLanguages = {
-            ["vue"] = "html"
+        emmet_language_server = {
+          filetypes = {'html', 'css', 'scss', 'vue' },
+          init_options = {
+            includeLanguages = {
+              ["vue"] = "html"
+            }
           }
-        }
-      },
-      cssls = {},
-      lua_ls = {},
-    }
+        },
+        cssls = {},
+        lua_ls = {},
+        clangd = {},
+      }
 
-    for server, config in pairs(servers) do
-      config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-      lspconfig[server].setup(config)
-    end
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
-    })
-  end,
-}
+      for server, config in pairs(servers) do
+        config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+        lspconfig[server].setup(config)
+      end
+      local ensure_installed = vim.tbl_keys(servers or {})
+      vim.list_extend(ensure_installed, {
+        'stylua',
+      })
+    end,
+  }
