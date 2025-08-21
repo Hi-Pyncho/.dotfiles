@@ -1,5 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
 /* Constants */
 #define TERMINAL "kitty"
 #define TERMCLASS "Kitty"
@@ -124,8 +125,11 @@ static const char *rofi[] = { "rofi", "-show", "drun", "-theme", "~/.config/rofi
 static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 static const char *upvol[]   = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
 static const char *downvol[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
-static const char *mutevol[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
+// static const char *mutevol[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
 static const char *suspend[] = { "systemctl", "suspend", NULL };
+static const char *fileExplorer[] = { "thunar", NULL };
+static const char *brightnessUp[] = { "brightnessctl", "set", "+20%", NULL };
+static const char *brightnessDown[] = { "brightnessctl", "set", "20%-", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -152,17 +156,19 @@ ResourcePref resources[] = {
   { "smartgaps",		INTEGER, &smartgaps },
 };
 
-#include <X11/XF86keysym.h>
 #include "shiftview.c"
 
 static const Key keys[] = {
   /* modifier                     key        function        argument */
-  { 0,                            XF86XK_AudioMute,         spawn, {.v = mutevol } },
-  { 0,                            XF86XK_AudioLowerVolume,  spawn, {.v = downvol } },
-  { 0,                            XF86XK_AudioRaiseVolume,  spawn, {.v = upvol   } },
+  { 0,                            XF86XK_AudioMute,         spawn, SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -39 $(pidof dwmblocks)") },
+  { 0,                            XF86XK_AudioLowerVolume,  spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -39 $(pidof dwmblocks)") },
+  { 0,                            XF86XK_AudioRaiseVolume,  spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -39 $(pidof dwmblocks)") },
+  { 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = brightnessUp } },
+  { 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightnessDown } },
   { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
   { MODKEY,                       XK_m,      spawn,          {.v = suspend } },
   { MODKEY,                       XK_r,      spawn,          {.v = rofi } },
+  { MODKEY,                       XK_e,      spawn,          {.v = fileExplorer } },
   { MODKEY,                       XK_q,      spawn,          {.v = termcmd } },
   { MODKEY,                       XK_b,      spawn,          {.v = browser} },
   { 0,                            XK_Print,  spawn,          {.v = screenshotcmd} },
