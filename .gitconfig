@@ -5,7 +5,7 @@
   name = Hi_Pyncho
 [core]
   excludesFile = ~/.dotfiles/.gitignore
-  editor = nvim
+  editor = nvim -w
 [submodule]
   recurse = true
 [credential]

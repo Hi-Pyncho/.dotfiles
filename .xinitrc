@@ -1,3 +1,5 @@
+mpd
+cp $XAUTHORITY ~/.Xauthority
 xkb-switch -W | while read -r event; do
   pkill -RTMIN+3 dwmblocks
 done &
