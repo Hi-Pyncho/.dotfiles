@@ -5,6 +5,7 @@ alias notes='cd ~/Notes/ && v'
 
 alias nvim-config='cd ~/.config/nvim && nvim'
 alias dotfiles="cd ~/.dotfiles && nvim"
+alias playground="cd ~/playground && nvim"
 
 alias v='NVIM_APPNAME=nvim nvim'
 alias vs='sudo -E nvim'
